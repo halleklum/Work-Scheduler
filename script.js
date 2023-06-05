@@ -13,10 +13,9 @@ displayTime()
 
 
 var  saveBtn = $("#saveBtn")
-
 saveBtn.on('click', function(event) {
     console.log ("save your schedule", $(this))
-    var textDes = $(this).siblings(".description").val
+    var textDes = $(this).siblings(".description").val()
     console.log(textDes)
         var hourBlock = $(this).parent().attr("id")
         console.log(hourBlock)
@@ -64,6 +63,23 @@ function scheduleFromStorage() {
 }
 scheduleFromStorage()
 
+var currentHour = $("currentHour")
+
+$(displayTime).each(function() {
+
+    if (currentHour == displayTime) {
+        $(this).addClass(".present");
+        $(this).children(".description").addClass(".present");
+
+    } else if (currentHour < displayTime) {
+        $(this).removeClass(".present");
+        $(this).addClass(".future");
+
+    } else if (currentHour > displayTime) {
+        $(this).removeClass(".future");
+        $(this).addClass(".past");
+    }
+});
 
 $(function () {
     // TODO: Add a listener for click events on the save button. This code should
