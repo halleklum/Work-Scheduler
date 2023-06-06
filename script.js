@@ -67,22 +67,24 @@ console.log(currentHour)
 
 var timeBlock = []
 
-$(".time-block").each(function() {
+$(".description").each(function() {
+    var timeBlock = parseInt($(this).attr("id"));
+    console.log(timeBlock)
 
-    if (currentHour == timeBlock) {
-        $(this).addClass(".present");
-        $(this).children(".description").addClass(".present");
-
+    if (currentHour === timeBlock) {
+        $(this).removeClass(".future");
+        $(this).removeClass(".present");
+        $(this).addClass(".past");
     } else if (currentHour < timeBlock) {
         $(this).removeClass(".present");
+        $(this).removeClass(".past");
         $(this).addClass(".future");
-
     } else if (currentHour > timeBlock) {
         $(this).removeClass(".future");
-        $(this).addClass(".past");
-
-        return;
+        $(this).removeClass(".past");
+        $(this).addClass(".present");
     }
+
 });
 
 
